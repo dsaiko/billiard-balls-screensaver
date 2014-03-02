@@ -8,11 +8,10 @@ import com.hijex.shared.Vector2D;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Point3D;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.*;
 import javafx.scene.transform.Rotate;
@@ -28,6 +27,8 @@ class Ball extends Sphere {
     private final double radius;
 
     private Vector2D motion;
+
+    private final AudioClip soundHit;
 
     static final Vector2D WALL_VERTICAL = new Vector2D(0,0,0,100);
     static final Vector2D WALL_HORIZONTAL = new Vector2D(0,0,100,0);
@@ -81,13 +82,13 @@ class Ball extends Sphere {
         rotate = new Rotate(rnd.nextInt(360), new Point3D(rotationAxes.dx, rotationAxes.dy, 0));
         getTransforms().add(rotate);
 
+        soundHit = new AudioClip(getClass().getResource("/hit-wood.wav").toExternalForm());
+        soundHit.setCycleCount(1);
+        soundHit.setVolume(0.9);
+
+
         Timeline animation = new Timeline();
-        animation.getKeyFrames().add(new KeyFrame(Duration.millis(35), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                move();
-            }
-        }));
+        animation.getKeyFrames().add(new KeyFrame(Duration.millis(35), e -> move()));
         animation.setCycleCount(Animation.INDEFINITE);
         animation.play();
     }
@@ -135,6 +136,8 @@ class Ball extends Sphere {
             if(intersects(x, y, that)) {
 
                 hit = true;
+                soundHit.play();
+
                 Vector2D centerLine = new Vector2D(new Point2D(x, y), new Point2D(that.getTranslateX(), that.getTranslateY()));
 
                 Vector2D[] hit1 = computeHit(centerLine);

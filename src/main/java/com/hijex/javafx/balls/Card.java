@@ -8,8 +8,6 @@ import com.hijex.shared.Vector2D;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -62,12 +60,7 @@ class Card extends ImageView {
         }
 
         Timeline animation = new Timeline();
-        animation.getKeyFrames().add(new KeyFrame(Duration.millis(35), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                move();
-            }
-        }));
+        animation.getKeyFrames().add(new KeyFrame(Duration.millis(35), e -> move()));
         animation.setCycleCount(Animation.INDEFINITE);
         animation.play();
     }

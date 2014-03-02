@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hijex</groupId>
-    <artifactId>balls-screensaver</artifactId>
+    <artifactId>billiard-balls-screensaver</artifactId>
     <packaging>jar</packaging>
 
     <organization>
         <name>hijex.com</name>
     </organization>
 
-    <version>0.1-11-g5563e41</version>
+    <version>0.1</version>
     <name>balls-screensaver</name>
     <url>http://www.hijex.com/</url>
 
@@ -60,8 +60,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
 

@@ -21,8 +21,8 @@ import java.util.Random;
 
 public class BallsScreensaver extends Application {
 
-    final List<Ball> balls = new ArrayList<Ball>(16);
-    private final List<Card> cards = new ArrayList<Card>(16);
+    final List<Ball> balls = new ArrayList<>(16);
+    private final List<Card> cards = new ArrayList<>(16);
 
     private double     ballRadius;
     Rectangle2D screenBounds;
